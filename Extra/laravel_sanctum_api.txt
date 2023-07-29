@@ -1,0 +1,14 @@
+01- install a laravel projject and add sanctum "composer require laravel/sanctum"
+"php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider""
+02- create auth and tasks controller
+03- create task model (-m to create the migration as well)
+04- create a Traits/httpResponses.php for the success and error response
+05- create routes for login, register and logout in the api file with AuthController
+06- make:request StoreUserRequest for validation user fileds and then save them to the DB
+07- make:request LoginUserRequest for validate login info and sending a token to the user
+08- add fields to tasks migration and modify its model to set the relationship with the user (belongsTo)
+09- make:factory TaskFactory to add dummy data must have at least one user in DB
+10- make:resource TaskResource to convert the tasks to JSON and structure (adding user info)
+11- make:request StoreTaskRequest for validate Task info
+12- finish task CRUD
+13- logout and then delete the token
