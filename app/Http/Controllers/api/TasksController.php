@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\TaskResource;
+use App\Models\Task;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TasksController extends Controller
 {
@@ -12,7 +16,17 @@ class TasksController extends Controller
      */
     public function index()
     {
-        return response()->json('Test');
+         $data = TaskResource::collection(
+            Task::where('user_id', Auth::user()->id)->get()
+        );
+         return $data;
+        // $tasks = Task::latest()->paginate(1);
+        // return [
+        //     "status" => 1,
+        //     "data" => $tasks
+        // ];
+         
+         
     }
 
     /**

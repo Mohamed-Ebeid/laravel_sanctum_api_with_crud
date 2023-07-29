@@ -40,11 +40,7 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request){
       $request->validated($request->all());
-
-      if (!User::where('email', $request->email )->exists()) {
-        return $this->error('', 'This email does not exists', 404);
-      }
-
+      
       $user = User::create([
         'name'=>$request->name,
         'email'=>$request->email,
