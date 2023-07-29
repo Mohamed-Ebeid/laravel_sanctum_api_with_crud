@@ -40,7 +40,7 @@ class AuthController extends Controller
 
     public function register(StoreUserRequest $request){
       $request->validated($request->all());
-      
+
       $user = User::create([
         'name'=>$request->name,
         'email'=>$request->email,
@@ -54,6 +54,10 @@ class AuthController extends Controller
     }
 
     public function logout(){
-      return "logout";
+      Auth::user()->currentAccessToken()->delete();
+
+      return $this->success([
+        'message' => 'You have succesfully been logged out and your token has been removed'
+        ]);
     }
 }
